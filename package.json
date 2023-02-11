@@ -1,0 +1,22 @@
+{
+  "name": "price",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^8.34.0",
+    "exceljs": "^4.3.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "sharp": "^0.31.3",
+    "xlsx": "^0.18.5"
+  }
+}
