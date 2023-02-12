@@ -33,17 +33,24 @@ const priceBuilder = async () => {
       }
     });
 
+    // add file creator info
     newWorkbook.creator = HEADERS.storeName;
     newWorkbook.created = new Date(Date.now());
     let sheet = newWorkbook.addWorksheet(HEADERS.newArrivals, {
       properties: { tabColor: { argb: "FFC0000" } },
     });
+
+    // add styles for cells, rows and columns except product list
     sheet = styleSheet(sheet);
+
+    // get named structure of excel sheet
     const { STRUCTURE_HEADERS_LIST, STRUCTURE_LIST_TITLE, STRUCTURE_STORE } =
       structureSheet(sheet);
 
+    // add only 'PNG' store logo to price list named as logo.png
     sheet = await addPriceLogo(newWorkbook, sheet);
 
+    // naming of price headers
     STRUCTURE_STORE.title.value = HEADERS.storeTitle;
     STRUCTURE_STORE.phone.value = HEADERS.storePhone;
     STRUCTURE_STORE.email.value = HEADERS.storeEmail;
@@ -54,6 +61,7 @@ const priceBuilder = async () => {
       color: { argb: "29a8ff" },
     };
 
+    // naming price list columns and list header
     STRUCTURE_LIST_TITLE.name.value = HEADERS.newArrivals;
     STRUCTURE_HEADERS_LIST.imageRow.value = COLUMNS.image;
     STRUCTURE_HEADERS_LIST.nameRow.value = COLUMNS.name;
@@ -61,6 +69,7 @@ const priceBuilder = async () => {
     STRUCTURE_HEADERS_LIST.queRow.value = COLUMNS.quantity;
     STRUCTURE_HEADERS_LIST.priceRow.value = COLUMNS.price;
 
+    // create list items
     let index = 0;
     for (
       let startCountList = PRODUCTS_LIST_START_ROW;
@@ -77,8 +86,10 @@ const priceBuilder = async () => {
       index++;
     }
 
+    // naming output file "company name + today date dd.mm.yyyy"
     let fileName = createFileName(FILE.name);
 
+    // save output file
     await fs.stat(`build/${fileName}.xlsx`, (err, stats) => {
       if (stats?.isFile()) {
         fileName = fileName + "_";
