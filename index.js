@@ -83,6 +83,10 @@ const priceBuilder = async () => {
       if (stats?.isFile()) {
         fileName = fileName + "_";
       }
+      if (!fs.existsSync("./build")) {
+        fs.mkdirSync("./build");
+      }
+
       newWorkbook.xlsx.writeFile(`build/${fileName}.xlsx`).then(() => {
         console.clear();
         console.log(`
