@@ -12,6 +12,10 @@ async function listItemCreator(sheet, cellNumber, item, index, book) {
   sheet.getRow(cellNumber).height = 116;
   sheet.getCell(`${dataCells[0]}${cellNumber}`).value =
     item[index][PRODUCT.name];
+  sheet.getCell(`${dataCells[0]}${cellNumber}`).alignment = {
+    wrapText: true,
+    vertical: "middle",
+  };
   sheet.getCell(`${dataCells[1]}${cellNumber}`).value =
     item[index][PRODUCT.code];
   sheet.getCell(`${dataCells[2]}${cellNumber}`).value = PRODUCT.quantity;
