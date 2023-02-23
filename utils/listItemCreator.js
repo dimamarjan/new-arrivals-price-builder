@@ -23,26 +23,28 @@ async function listItemCreator(sheet, cellNumber, item, index, book) {
     item[index][PRODUCT.price];
 
   const url = item[index][PRODUCT.imageUrl];
-  const response = await fetch(url);
-  const blob = await response.blob();
-  const arrayBuffer = await blob.arrayBuffer();
-  const data = await sharp(Buffer.from(arrayBuffer))
-    .resize(151, 151, {
-      fit: "contain",
-      background: { r: 255, g: 255, b: 255 },
-    })
-    .toBuffer();
-  const imageBase64 = Buffer.from(data).toString("base64");
+  console.log(url);
+  if (url) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    const data = await sharp(Buffer.from(arrayBuffer))
+      .resize(151, 151, {
+        fit: "contain",
+        background: { r: 255, g: 255, b: 255 },
+      })
+      .toBuffer();
+    const imageBase64 = Buffer.from(data).toString("base64");
 
-  const prodImage = book.addImage({
-    base64: imageBase64,
-    extension: "jpeg",
-  });
-
-  sheet.addImage(prodImage, {
-    tl: { col: 0.5, row: parseFloat(`${cellNumber - 1}.1`) },
-    ext: { height: 151, width: 151 },
-  });
+    const prodImage = book.addImage({
+      base64: imageBase64,
+      extension: "jpeg",
+    });
+    sheet.addImage(prodImage, {
+      tl: { col: 0.5, row: parseFloat(`${cellNumber - 1}.1`) },
+      ext: { height: 151, width: 151 },
+    });
+  }
 
   return sheet;
 }

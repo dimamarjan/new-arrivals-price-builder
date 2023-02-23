@@ -99,7 +99,6 @@ const priceBuilder = async () => {
       }
 
       newWorkbook.xlsx.writeFile(`build/${fileName}.xlsx`).then(() => {
-        console.clear();
         console.log(`
         
         **********************************
