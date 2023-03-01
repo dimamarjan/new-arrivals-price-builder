@@ -1,0 +1,7 @@
+[Desktop Entry]
+
+Type=Application
+Terminal=true
+Name=Price Generator
+Icon=/home/marjan/Documents/py/new-arrivals-price-builder/linux/generate-price.svg
+Exec=/home/marjan/Documents/py/new-arrivals-price-builder/linux/generate-price.sh
