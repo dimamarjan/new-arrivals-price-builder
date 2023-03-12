@@ -13,6 +13,7 @@ const {styleSheet} = require("./utils/style");
 const structureSheet = require("./utils/structureSheet");
 const listItemCreator = require("./utils/listItemCreator");
 const addPriceLogo = require("./utils/addPriceLogo");
+const getAllProducts = require("./utils/getFileFromFTP");
 
 const priceBuilder = async () => {
     const newWorkbook = new ExcelJS.Workbook();
@@ -23,6 +24,7 @@ const priceBuilder = async () => {
         data.split("\n").forEach((i) => {
             if (i.trim()) newArr.push(i.trim());
         });
+        await getAllProducts()
         const workbook = XLSX.readFile("source/All.xlsx");
         const worksheet = workbook.Sheets["Trade_CRM"];
         const jsa = XLSX.utils.sheet_to_json(worksheet);
