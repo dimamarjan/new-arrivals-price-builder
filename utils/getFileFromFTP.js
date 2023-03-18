@@ -5,14 +5,13 @@ async function getAllProducts() {
     client.ftp.verbose = true
     try {
         await client.access({
-            host: "marjan.myqnapcloud.com",
+            host: "192.168.88.43",
             user: "marjan-ftp",
             password: "Enter_paswd_77",
-            secure: true
+            secure: false
         })
         await client.downloadTo("./source/All.xlsx", "All.xlsx")
-    }
-    catch(err) {
+    } catch (err) {
         console.log(err)
     }
     client.close()
