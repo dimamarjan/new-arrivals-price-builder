@@ -7,7 +7,7 @@ async function getAllProducts() {
         await client.access({
             host: "192.168.88.43",
             user: "marjan-ftp",
-            password: "Enter_paswd_77",
+            password: "Enter_7786",
             secure: false
         })
         await client.downloadTo("./source/All.xlsx", "All.xlsx")
